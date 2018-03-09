@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<!-- Loads the static files -->
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'music/css/style.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<!-- logo -->
+		<div class="navbar-header">
+			<a href="{% url 'music:index' %}" class="navbar-brand">Mozoo</a>
+		</div>
+	</div>
+</nav>
+
+{% if all_albums %}
+<h2>Here are my albums.</h2>
+<ul>
+	{% for album in all_albums %}
+	<li><a href="{% url 'music:detail' album.id %}">{{ album.albumTitle }}</a></li>
+	{% endfor %}
+</ul>
+{% else %}
+<h2>There are no albums.</h2>
+{% endif %}
+</body>
+</html>
